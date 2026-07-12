@@ -20,5 +20,7 @@ app.use(limiter);
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/accessories', require('./routes/accessory.routes'));
+app.use('/api/favorites', require('./routes/favorite.routes'));
 
 module.exports = app;
