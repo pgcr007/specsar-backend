@@ -11,6 +11,10 @@ exports.register = async (req, res) => {
     const user = await User.create({ email, passwordHash });
     res.status(201).json({ id: user._id, email: user.email });
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(409).json({ error: 'Email already registered' });
+    }
+    console.error('Register error:', err);
     res.status(500).json({ error: 'Registration failed' });
   }
 };
